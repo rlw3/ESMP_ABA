@@ -28,11 +28,11 @@ GPIO.setup(DIR_PIN_1, GPIO.OUT)
 GPIO.setup(STEP_PIN_2, GPIO.OUT)
 GPIO.setup(DIR_PIN_2, GPIO.OUT)
 
-# Set microstepping mode (1/4 step)
+# Set microstepping mode1
 GPIO.setup(MODE_1, GPIO.OUT)
 GPIO.setup(MODE_2, GPIO.OUT)
 GPIO.output(MODE_1, (0, 1, 0))
-GPIO.output(MODE_2, (1, 0, 0))
+GPIO.output(MODE_2, (0, 1, 0))
 
 # Step delay
 delay = 0.0208
@@ -46,7 +46,7 @@ def move_motor(motor, steps):
     else:
         step_pin, dir_pin = STEP_PIN_2, DIR_PIN_2
 
-    direction = CW if steps > 0 else CCW
+    direction = CCW if steps > 0 else CW
     GPIO.output(dir_pin, direction)
 
     for _ in range(abs(steps)):
